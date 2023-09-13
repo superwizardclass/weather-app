@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import ChildComponent from './components/ChildComponent.vue';
+import WeatherDetails from './components/WeatherDetails.vue';
 
 const data = ref('')
 const currentWeatherData = ref('')
@@ -27,9 +27,44 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Parent</h1>
+  <h1>This is where I am.</h1>
   <p v-if="data == ''">LOADING</p>
-  <ChildComponent :current-weather-data="currentWeatherData" :message="message"/>
+  <WeatherDetails v-else :current-weather-data="currentWeatherData" :message="message"/>
 </template>
 
-<style scoped></style>
+<style>
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+}
+
+</style>
