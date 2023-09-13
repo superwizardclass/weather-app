@@ -14,7 +14,6 @@ body {
   min-height: 100vh;
   color: rgb(238, 238, 238);
   background: rgb(35, 35, 35);
-  background-image: url('background.jpg');
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
   font-family: 'Cabin', sans-serif;
@@ -24,9 +23,4 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background-size: 700px;
-  background-repeat: no-repeat;
-  background-position-x: -150px;
-  background-position-y: -50px;
-}
+
