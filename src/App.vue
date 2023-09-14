@@ -91,8 +91,4 @@ a,
     padding: 0 2rem;
   }
 }
-
-body {
-
-}
 </style>
