@@ -1,14 +1,14 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
 import Introduction from './components/Introduction.vue'
-import WeatherDetails from './components/WeatherDetails.vue';
+import Weather from './components/Weather.vue';
 
 const data = ref('')
 const currentWeatherData = ref('')
-const message = ref('Hello')
 const API_URL = 'https://api.open-meteo.com/v1/forecast?latitude=49.058&longitude=-122.2526&hourly=temperature_2m,relativehumidity_2m&current_weather=true'
+const location = ref('Abbotsford')
 
-watch(data, (newData) =>{
+watch(data, (newData) => {
   if (newData != '') {
     currentWeatherData.value = newData.current_weather
   }
@@ -30,40 +30,48 @@ onMounted(() => {
 <template>
   <div class="overlay"></div>
   <Introduction/>
-  <h1>This is where I am.</h1>
   <p v-if="data == ''">LOADING</p>
-  <WeatherDetails v-else :current-weather-data="currentWeatherData"/>
+  <Weather class="weather" v-else :current-weather-data="currentWeatherData" :location="location"/>
 </template>
 
 <style>
 
 .overlay {
   width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.12);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -10;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.26);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -10;
 }
 
 #app {
   min-height: 100vh;
-  display: flexbox;
+  display: flex;
+  flex-direction: column;
   max-width: 1280px;
+  min-width: 200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 0.5rem;
   font-size: 1.6rem;
   font-weight: normal;
   background-image: url('./assets/background.jpg');
   background-size: 1280px;
   background-repeat: no-repeat;
-  background-position-x: -150px;
-  background-position-y: -50px;
+  z-index: -2;
+
 }
 
 .introduction {
-  margin-top: 400px;
+  margin-top: 100px;
+}
+
+.weather {
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 a,
@@ -79,16 +87,18 @@ a,
   }
 }
 
+@keyframes fadeFromLeft {
+
+}
+
+/**Desktop */
 @media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: center;
+
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+
   }
 }
 </style>
