@@ -31,9 +31,10 @@ onMounted(() => {
   <div class="overlay"></div>
   <Introduction/>
   <p v-if="data == ''">LOADING</p>
+  <!--
   <Weather class="weather" v-else :current-weather-data="currentWeatherData" :location="location"/>
-
-  <h1 className="text-3xl font-bold underline">
+  -->
+  <h1 className="text-5xl font-serif underline ">
       Hello world!
   </h1>
 
